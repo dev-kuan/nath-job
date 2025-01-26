@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -14,7 +15,15 @@ class CompanyController extends Controller
     {
         //
 
-        return view('admin.company.index');
+        $user = Auth::user();
+
+        $company = Company::with(['employer'])->where('employer_id', $user->id)->first();
+
+        if (!$company) {
+            return redirect()->route('admin.company.create');
+        }
+
+        return view('admin.company.index', compact('company'));
     }
 
     /**
