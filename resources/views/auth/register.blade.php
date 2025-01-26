@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
@@ -7,7 +7,38 @@
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            </div>
+        
+        <!-- Avatar -->
+        <div>
+            <x-input-label for="avatar" :value="__('Avatar')" />
+            <x-text-input id="avatar" class="block mt-1 w-full" type="file" name="avatar" :value="old('avatar')" required autofocus autocomplete="avatar" />
+            <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
+            </div>
+        
+        <!-- Select Account Type -->
+        <div class="mt-4">
+            <x-input-label for="account_type" :value="__('Account Type')" />
+            <select id="account_type" class="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm" name="account_type">
+                <option value="Employee">Employee</option>
+                    <option value="Employer">Employer</option>
+            </select>
+            <x-input-error :messages="$errors->get('account_type')" class="mt-2" />
         </div>
+
+        <!-- Occupation -->
+        <div class="mt-4">
+            <x-input-label for="occupation" :value="__('Occupation')" />
+            <x-text-input id="occupation" class="block mt-1 w-full" type="text" name="occupation" :value="old('occupation')" required autofocus autocomplete="occupation" />
+            <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
+        </div>
+        
+        <!-- Experience -->
+        <div class="mt-4">
+            <x-input-label for="experience" :value="__('Experience')" />
+            <x-text-input id="experience" class="block mt-1 w-full" type="text" name="experience" :value="old('experience')" required autofocus autocomplete="experience" />
+            <x-input-error :messages="$errors->get('experience')" class="mt-2" />
+        </div>      
 
         <!-- Email Address -->
         <div class="mt-4">

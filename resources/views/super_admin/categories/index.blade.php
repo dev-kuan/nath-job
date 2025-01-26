@@ -32,10 +32,10 @@
                         </h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center gap-x-3">
-                        <a href="{{ route('admin.categories.edit', $category->id) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                        <a href="{{ route('admin.categories.edit', $category) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                             Edit
                         </a>
-                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">
+                        <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">
