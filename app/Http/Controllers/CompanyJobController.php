@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCompanyJobRequest;
+use App\Models\JobCandidate;
 use Illuminate\Support\Facades\DB;
 
 class CompanyJobController extends Controller
@@ -106,6 +107,31 @@ class CompanyJobController extends Controller
     public function edit(CompanyJob $companyJob)
     {
         //
+    }
+    public function close(Request $request, CompanyJob $companyJob)
+    {
+        $user = Auth::user();
+
+        if (!$companyJob) {
+            dd('CompanyJob tidak ditemukan!');
+        }
+
+        if (!$companyJob->company) {
+            dd('Company tidak ditemukan!', $companyJob);
+        }
+
+
+        if ($companyJob->company->employer_id != $user->id) {
+            abort(403);
+        }
+
+        DB::transaction(function () use ($companyJob) {
+            $companyJob->update([
+                'is_open' => false,
+            ]);
+        });
+
+        return redirect()->back()->with('success', 'Job has been closed and remaining candidates are rejected.');;
     }
 
     /**

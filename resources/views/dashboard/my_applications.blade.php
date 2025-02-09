@@ -1,65 +1,64 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="flex flex-row items-center justify-between">
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ __('Manage Job Applications') }}
             </h2>
         </div>
     </x-slot>
     
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex flex-col p-10 overflow-hidden bg-white shadow-sm sm:rounded-lg gap-y-5">
 
-
-                <div class="item-card flex flex-row justify-between items-center">
+                @forelse($my_applications as $application)
+                <div class="flex flex-row items-center justify-between item-card">
                     <div class="flex flex-row items-center gap-x-3">
-                        <img src=" " alt="" class="rounded-2xl object-cover w-[120px] h-[90px]">
+                        <img src="{{Storage::url($application->job->thumbnail)}}" alt="" class="rounded-2xl object-cover w-[120px] h-[90px]">
                         <div class="flex flex-col">
-                            <h3 class="text-indigo-950 text-xl font-bold">
-                                asdsad
+                            <h3 class="text-xl font-bold text-indigo-950">
+                                {{ $application->job->name }}
                             </h3>
-                        <p class="text-slate-500 text-sm">
-                           asdasdasd
+                        <p class="text-sm text-slate-500">
+                           {{ $application->job->category->name }}
                         </p>
                         </div>
                     </div> 
-                    <div  class="hidden md:flex flex-col">
-                        <p class="text-slate-500 text-sm">Salary</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">
-                            Rp 12312312/mo
+                    <div  class="flex-col hidden md:flex">
+                        <p class="text-sm text-slate-500">Salary</p>
+                        <h3 class="text-xl font-bold text-indigo-950">
+                            Rp {{ number_format($application->job->salary) }}/mo
                         </h3>
                     </div>
-                    <div  class="hidden md:flex flex-col">
-                        <p class="text-slate-500 text-sm">Status</p>
-
-                            <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
+                    <div  class="flex-col hidden md:flex">
+                        <p class="text-sm text-slate-500">Status</p>
+                            @if ($application->is_hired)
+                            <span class="px-3 py-2 text-sm font-bold text-white bg-green-500 rounded-full w-fit">
                                 HIRED
                             </span>
-
-                            <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
+                            @elseif (!$application->is_hired && $application->job->is_open)
+                            <span class="px-3 py-2 text-sm font-bold text-white bg-orange-500 rounded-full w-fit">
                                 WAITING
                             </span> 
-
-                            <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-red-500 text-white">
+                            @elseif (!$application->is_hired)
+                            <span class="px-3 py-2 text-sm font-bold text-white bg-red-500 rounded-full w-fit">
                                 REJECTED
                             </span>
-
+                            @endif
                     </div>
-                    <div class="hidden md:flex flex-row items-center gap-x-3">
-                        <a href=" " class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                    <div class="flex-row items-center hidden md:flex gap-x-3">
+                        <a href="{{ route('dashboard.my.applications.details', $application)}}" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
                             View Details
                         </a>
                     </div>
                 </div>
-                
+                @empty
                 <p>
-                    <a href=" " class="py-3 px-10 bg-indigo-500 text-white">
+                    <a href="{{ route('front.index')}}" class="px-10 py-3 text-white bg-indigo-500">
                     Explore Jobs</a>
                 </p>
-
+                @endforelse
                 
-
             </div>
         </div>
     </div>

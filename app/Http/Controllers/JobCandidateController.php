@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\JobCandidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class JobCandidateController extends Controller
 {
@@ -39,6 +42,24 @@ class JobCandidateController extends Controller
     public function show(JobCandidate $jobCandidate)
     {
         //
+
+        return view('admin.job_candidates.show', compact('jobCandidate'));
+    }
+
+    public function download_file(JobCandidate $jobCandidate) {
+        $user = Auth::user();
+
+        if($jobCandidate->job->company->employer_id != $user->id) {
+            abort(403);
+        }
+
+        $filePath = $jobCandidate->resume;
+
+        if(!Storage::disk('public')->exists($filePath)) {
+            abort(404);
+        } 
+
+        return Storage::disk('public')->download($fileSPath);
     }
 
     /**
@@ -54,7 +75,20 @@ class JobCandidateController extends Controller
      */
     public function update(Request $request, JobCandidate $jobCandidate)
     {
-        //
+        // hired candidates
+        $user = Auth::user();
+
+        if($jobCandidate->job->company->employer_id!= $user->id) {
+            abort(403);
+        }
+
+        DB::transaction(function () use ($jobCandidate) {
+            $jobCandidate->update([
+                'is_hired' => true,
+            ]);
+        });
+
+        return view('admin.job_candidates.show', compact('jobCandidate'));
     }
 
     /**
