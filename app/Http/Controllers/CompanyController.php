@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CompanyController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -84,6 +86,7 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         //
+        $this->authorize('edit', $company);
         return view('admin.company.edit', compact('company'));
 
     }

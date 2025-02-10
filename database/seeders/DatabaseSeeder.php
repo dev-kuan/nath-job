@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(RolePermissionSeeder::class);
         // Seeding Categories
-        Category::factory(10)->create();
+        // Category::factory(10)->create();
 
         // Seeding Companies
         Company::factory(10)->create()->each(function ($company) {

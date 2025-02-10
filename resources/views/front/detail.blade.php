@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
-<section>
+<section class="container relative mx-auto">
     <article id="Details"
-        class="max-w-[900px] mx-auto flex flex-col rounded-[20px] bg-white border border-[#E8E4F8] p-[30px] gap-10 shadow-[0_8px_30px_0_#0E01400D] mt-[70px]">
+        class="container relative max-w-[900px] mx-auto flex flex-col rounded-[20px] bg-white border border-[#E8E4F8] p-[30px] gap-10 shadow-[0_8px_30px_0_#0E01400D] mt-[70px]">
         <div id="Cover" class="relative w-full">
             <div class="w-full aspect-[840/300] bg-[#D9D9D9] rounded-[20px] overflow-hidden">
                 <img src="{{ Storage::url($companyJob->thumbnail) }}" class="object-cover w-full h-full"
@@ -125,8 +125,8 @@
             </div>
         </div>
     </article>
-    <section id="Latest" class="flex flex-col gap-[30px] mt-[70px]">
-        <h2 class="container max-w-[1130px] mx-auto font-bold text-2xl leading-[36px]">Other Jobs You <br> Might
+    <section id="Latest" class="relative overflow-hidden flex flex-col gap-[30px] mt-24">
+        <h2 class="container max-w-4xl text-left mx-auto font-bold text-2xl leading-[36px]">Other Jobs You <br> Might
             Interested</h2>
         <div class="main-carousel *:!overflow-visible">
             @forelse ($jobs as $job )

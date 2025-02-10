@@ -22,7 +22,7 @@
     </div>
 </header>
 <section id="Result" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px] w-fit">
-    <h2 class="font-bold text-2xl leading-[36px] text-white capitalize">Search Result: {{ ucfirst($keyword) }}</h2>
+    <h2 class="font-bold text-2xl leading-[36px] text-white">Search Result: {{ ucfirst($keyword) }}</h2>
     <div class="categories-container grid grid-cols-3 gap-[30px]">
         @forelse ( $jobs as $job )
         <x-job-card :job="$job"></x-job-card>
@@ -30,8 +30,9 @@
         <p class="text-white capitalize text-lg">Tidak ditemukan data</p>
         @endforelse
     </div>
-    {{ $jobs->links() }}
-    <div id="Pagination" class="flex items-center justify-center gap-[14px] mt-10">
+    {{ $jobs->appends(request()->query())->links() }}
+    {{-- {{ $jobs->links() }} --}}
+    {{-- <div id="Pagination" class="flex items-center justify-center gap-[14px] mt-10">
         <button
             class="w-[38px] h-[38px] flex shrink-0 rounded-full justify-center items-center text-white font-semibold hover:bg-[#7521FF] transition-all duration-300 bg-[#7521FF]">1</button>
         <button
@@ -46,6 +47,6 @@
             class="w-[38px] h-[38px] flex shrink-0 rounded-full justify-center items-center text-white font-semibold hover:bg-[#7521FF] transition-all duration-300 bg-[#0E0140]">6</button>
         <button
             class="w-[38px] h-[38px] flex shrink-0 rounded-full justify-center items-center text-white font-semibold hover:bg-[#7521FF] transition-all duration-300 bg-[#0E0140]">7</button>
-    </div>
+    </div> --}}
 </section>
 @endsection

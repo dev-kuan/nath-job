@@ -19,7 +19,7 @@
         </div>
         @elseif (in_array(Route::currentRouteName(), ['front.search']))
         <div id="page-background" class="absolute h-[863px] w-full top-0 -z-10 overflow-hidden">
-            <img src="{{asset('assets/backgrounds/Group 2009.png')}}" class="w-full h-full object-fill" alt="background">
+            <img src="{{asset('assets/backgrounds/Group 2009.png')}}" class="object-fill w-full h-full" alt="background">
         </div>
         @else
         <div id="page-background" class="absolute h-[533px] w-full top-0 -z-10 overflow-hidden">

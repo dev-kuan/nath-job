@@ -25,22 +25,6 @@
                 class="{{ request()->routeIs($menu['href']) ? $activeMenu : $inactiveMenu }} transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C]">{{ $menu['label'] }}</a>
         </li>      
         @endforeach
-        {{-- <li>
-            <a href="index.html"
-                class="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-medium text-white">Features</a>
-        </li>
-        <li>
-            <a href="index.html"
-                class="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-medium text-white">Benefits</a>
-        </li>
-        <li>
-            <a href="index.html"
-                class="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-medium text-white">Stories</a>
-        </li>
-        <li>
-            <a href="index.html"
-                class="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-medium text-white">About</a>
-        </li> --}}
     </ul>
     @guest
         

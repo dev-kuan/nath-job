@@ -70,6 +70,7 @@ class FrontController extends Controller
     }
 
     public function apply_store(StoreApplyJobRequest $request, CompanyJob $companyJob) {
+
         $user = Auth::user();
 
         $hasApplied = JobCandidate::where('company_job_id', $companyJob->id)->where('candidate_id', $user->id)->first();
@@ -110,13 +111,28 @@ class FrontController extends Controller
 
         $jobs = CompanyJob::with(['category', 'company'])
         ->where('name', 'LIKE', "%{$keyword}%")
+        ->orWhere('type', 'LIKE', "%{$keyword}%")
         ->orWhere('location', 'LIKE', "%{$keyword}%")
         ->orWhereHas('company', function($query) use ($keyword) {
             $query->where('name', 'LIKE', '%' . $keyword.'%');
-        })->paginate(6);
+        })->paginate(1);
 
 
         return view('front.search', compact('jobs', 'keyword'));
+    }
+
+    // cek role user auth for apply
+    // if user role = employer then return message "anda tidak bisa melamar karna anda seorang employer"
+    // if user role = candidate then run for function apply_store
+
+    public function checkRole() {
+        $user = Auth::user();
+
+        if($user->role == 'employer') {
+            return redirect()->back()->withErrors(['error' => 'Anda tidak bisa melamar karna anda seorang employer']);
+        } else {
+            return true;
+        }
     }
 
 }
