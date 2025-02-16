@@ -1,12 +1,10 @@
 @extends('layouts.master')
 @section('content')
-<section class="font-poppins text-dark">
-    <!-- component -->
-    <div class="bg-white flex justify-center overflow-hidden items-center h-screen">
-        <!-- Left: Image -->
-        <div class="w-1/2 h-screen hidden lg:block">
-            <img src="{{ asset('assets/backgrounds/Smiley Woman on Floor.png')}}" alt="Placeholder Image"
-                class="object-cover w-full h-full">
+<section class="font-poppins text-[#0E0140]">
+    <main class="min-h-dvh">
+        <div id="left-side" class="fixed top-0 left-0 h-dvh w-[640px] outline outline-1 outline-[#E8E4F8]">
+            <img src="{{ asset('assets/backgrounds/Smiley Woman on Floor.png')}}" class="object-cover size-full"
+                alt="background image" />
             <div
                 class="absolute bottom-0 flex p-5 flex-col gap-4 max-w-[590px] mx-[30px] mb-[30px] rounded-[20px] outline outline-1 outline-[#E8E4F8] bg-white shadow-[0_8px_30px_0_#0E01400D]">
                 <p class="text-base leading-[32px] font-semibold">
@@ -44,52 +42,49 @@
                 </div>
             </div>
         </div>
-        <!-- Right: Login Form -->
-        <div class="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-            <a href="{{ route('front.index') }}" class="flex shrink-0 justify-start w-full h-10 mb-16">
+        <section id="right-side" class="w-dvw h-dvh flex flex-col items-center justify-center pl-[640px] py-[140px]">
+            <a href="{{ route('front.index') }}" class="flex shrink-0 justify-start w-[500px] h-[10] mb-[70px]">
                 <img src="{{ asset('assets/logos/Logo-black.svg')}}" class="object-contain" alt="logo" />
             </a>
-            <h1 class="text-2xl font-bold mb-4">Sign In</h1>
-            <form action="{{ route('login') }}" method="POST">
+            <form id="form-signin" method="POST" action="{{ route('login') }}" class="w-[500px] flex flex-col gap-[30px]">
                 @csrf
-                <!-- Username Input -->
+                <h1 class="text-[26px] leading-[39px] font-bold">Sign In</h1>
                 <div class="flex flex-col gap-2">
                     <label for="email" class="text-base font-semibold">Email Address</label>
                     <div
-                        class="flex items-center rounded-full py-3.5 px-6 gap-2.5 ring-1 ring-dark focus-within:ring-2 focus-within:ring-primary transition-all duration-300">
+                        class="flex items-center rounded-full py-[14px] px-[24px] gap-[10px] ring-1 ring-[#0E0140] focus-within:ring-2 focus-within:ring-primary transition-all duration-300">
                         <div class="flex shrink-0 size-6">
                             <img src="{{ asset('assets/icons/sms.svg')}}" alt="email icon" />
                         </div>
                         <input type="email" name="email" id="email"
-                            class="w-full focus:ring-0 border-none font-semibold placeholder:font-normal placeholder:text-dark"
+                            class="w-full focus:ring-0 border-none font-semibold placeholder:font-normal placeholder:text-[#0E0140]"
                             placeholder="Write your email address" required />
                     </div>
                 </div>
-                <!-- Password Input -->
-                <div class="flex flex-col gap-2 mt-4">
+                <div class="flex flex-col gap-2">
                     <label for="password" class="text-base font-semibold">Password</label>
                     <div
-                        class="flex items-center rounded-full py-3.5 px-6 gap-2.5 ring-1 ring-dark focus-within:ring-2 focus-within:ring-primary transition-all duration-300">
+                        class="flex items-center rounded-full py-[14px] px-[24px] gap-[10px] ring-1 ring-[#0E0140] focus-within:ring-2 focus-within:ring-primary transition-all duration-300">
                         <div class="flex shrink-0 size-6">
                             <img src="{{ asset('assets/icons/lock.svg')}}" alt="password icon" />
                         </div>
                         <input type="password" name="password" id="password"
-                            class="w-full focus:ring-0 border-none font-semibold placeholder:font-normal placeholder:text-dark"
+                            class="w-full focus:ring-0 border-none font-semibold placeholder:font-normal placeholder:text-[#0E0140]"
                             placeholder="Write your password" required />
                     </div>
-                    <a href="#" class="text-sm leading-5 hover:underline">Forgot Password</a>
+                    <a href="#" class="text-sm leading-[21px] hover:underline">Forgot Password</a>
                 </div>
-                <div class="flex flex-col gap-3 mt-6">
+                <div class="flex flex-col gap-3">
                     <button type="submit"
-                        class="flex items-center justify-center py-3.5 px-7 bg-primary font-semibold text-white rounded-full hover:shadow-[0px_10px_20px_0px_#FF6B2C66] transition-all duration-300">
+                        class="flex items-center justify-center py-[14px] px-[30px] bg-primary font-semibold text-white rounded-full hover:shadow-[0px_10px_20px_0px_#FF6B2C66] transition-all duration-300">
                         Sign In to My Account
                     </button>
                     <a href="{{ route('register') }}"
-                        class="flex items-center justify-center py-3.5 px-7 font-semibold text-dark hover:bg-primary hover:outline-white transition-colors duration-300 ease-in-out outline outline-1 outline-dark rounded-full">Create
+                        class="flex items-center justify-center py-[14px] px-[30px] font-semibold text-[#0E0140] outline outline-1 outline-[#0E0140] rounded-full">Create
                         New Account</a>
                 </div>
             </form>
-        </div>
-    </div>
+        </section>
+    </main>
 </section>
 @endsection

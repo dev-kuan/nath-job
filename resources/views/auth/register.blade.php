@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('content')
 <section class="font-poppins text-[#0E0140]">
-    <main class="flex min-h-screen">
+    <main class="bg-white flex justify-start items-start">
         <div id="Left-background"
-            class="fixed top-0 left-0 h-screen w-[640px] flex shrink-0 items-baseline ring-1 ring-[#E8E4F8] overflow-hidden">
+            class="w-1/2 hidden h-screen lg:block shrink-0 items-baseline ring-1 ring-[#E8E4F8]">
             <img src="{{asset('assets/backgrounds/Working from Home with Pet Dog 1.png')}}"
-                class="object-cover w-full h-full background" alt="background image">
+                class="object-cover w-full h-full bg-fixed" alt="background image">
             <div
                 class="testimonial absolute bottom-0 w-[580px] mx-[30px] mt-auto mb-[30px] rounded-[20px] border border-[#E8E4F8] p-5 flex flex-col gap-4 bg-white shadow-[0_8px_30px_0_#0E01400D]">
                 <p class="font-semibold leading-8 caption">Jobank memberikan semangat baru setelah kena PHK, saya bisa
@@ -43,7 +43,7 @@
             </div>
         </div>
         <section id="Signup-form"
-            class="pl-[640px] flex flex-col py-[140px] items-center justify-center w-full gap-[70px]">
+            class="flex flex-col items-center justify-start p-8 w-full lg:w-1/2 lg:ml-1/2 h-screen overflow-y-auto">
             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
                 class="max-w-[500px] w-full flex flex-col gap-[30px]">
                 @csrf
@@ -153,7 +153,7 @@
                 </div>
                 <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                 <div class="flex flex-col gap-2">
-                    <label for="password" class="font-semibold">password</label>
+                    <label for="password" class="font-semibold">Password</label>
                     <div
                         class="flex items-center rounded-full p-[14px_24px] gap-[10px] ring-1 ring-[#0E0140] focus-within:ring-2 focus-within:ring-primary transition-all duration-300">
                         <div class="flex w-6 h-6 shrink-0">

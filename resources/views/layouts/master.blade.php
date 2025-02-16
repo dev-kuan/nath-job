@@ -36,11 +36,15 @@
         @endif
     </header>
     @yield('content')
-    @include('partials.footer')
+    @if (!in_array(Route::currentRouteName(), ['login', 'register']))
+        @include('partials.footer')
+    @endif
     @yield('scripts')
-
+    
     <!-- JS for carousel/flickity-->
-    <script src="{{ asset('js/navbar.js') }}"></script>
+    @if (!in_array(Route::currentRouteName(), ['login', 'register']))
+        <script src="{{ asset('js/navbar.js') }}"></script>
+    @endif
 </body>
 
 </html>
