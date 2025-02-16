@@ -2,9 +2,9 @@
     'job'
 ])
 
-<div class="card first-of-type:pl-[calc((100%-1130px)/2)] last-of-type:pr-[calc((100%-1130px)/2)] px-[15px] py-[2px]">
+<div class="card py-[2px] mt-3 px-3">
     <div
-        class="w-[300px] flex flex-col shrink-0 rounded-[20px] border border-[#E8E4F8] p-5 gap-5 bg-white shadow-[0_8px_30px_0_#0E01400D] hover:ring-2 hover:ring-[#FF6B2C] transition-all duration-300">
+        class="max-w-72 md:max-w-[18.75rem] flex flex-col shrink-0 rounded-[20px] border border-gray-200 p-5 gap-5 bg-white shadow-[0_8px_30px_0_#0E01400D] hover:ring-2 hover:ring-primary transition-all duration-300">
         <div class="flex items-center gap-3 company-info">
             <div class="w-[70px] flex shrink-0 overflow-hidden">
                 <img src="{{ Storage::url($job->company->logo) }}" class="object-contain w-full h-full rounded-lg"
@@ -47,7 +47,7 @@
                 <p class="text-sm leading-[21px]">/month</p>
             </div>
             <a href="{{ route('front.detail',$job->slug) }}"
-                class="rounded-full p-[14px_24px] bg-[#FF6B2C] font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Details</a>
+                class="rounded-full p-[14px_24px] bg-primary font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Details</a>
         </div>
     </div>
 </div>

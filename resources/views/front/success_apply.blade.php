@@ -18,7 +18,7 @@
                         Other Jobs</a>
                     @auth    
                     <a href="{{ route('dashboard.my.applications') }}"
-                        class="rounded-full p-[14px_24px] bg-[#FF6B2C] font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Check My Application Status</a>
+                        class="rounded-full p-[14px_24px] bg-primary font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Check My Application Status</a>
                     @endauth
             </div>
         </div>

@@ -43,7 +43,7 @@ class CompanyPolicy
     public function update(User $user, Company $company): bool
     {
         //
-        return $company->employer_id == $user->id;
+        return $company->employer_id == $user->id; 
     }
 
     /**

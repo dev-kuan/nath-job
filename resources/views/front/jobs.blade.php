@@ -2,7 +2,7 @@
 @section('content')
 
 <p class="text-white text-center text-lg">
-    Halaman Stories
+    Halaman Jobs
 </p>
 
 @endsection

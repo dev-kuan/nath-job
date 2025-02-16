@@ -22,8 +22,8 @@ class FrontController extends Controller
         return view('front.index', compact('jobs', 'categories'));
     }
 
-    public function features() {
-        return view('front.features');
+    public function jobs() {
+        return view('front.jobs');
     }
 
     public function about() {
@@ -34,12 +34,8 @@ class FrontController extends Controller
         return view('front.contact');
     }
 
-    public function stories() {
-        return view('front.stories');
-    }
-
-    public function benefits() {
-        return view('front.benefits');
+    public function companies() {
+        return view('front.companies');
     }
 
     // detail job
@@ -115,7 +111,7 @@ class FrontController extends Controller
         ->orWhere('location', 'LIKE', "%{$keyword}%")
         ->orWhereHas('company', function($query) use ($keyword) {
             $query->where('name', 'LIKE', '%' . $keyword.'%');
-        })->paginate(1);
+        })->paginate(6);
 
 
         return view('front.search', compact('jobs', 'keyword'));

@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('logo.svg') }}" type="image/x-icon">
+    <title>JobThan</title>
+
     @vite('resources/css/app.css')
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
@@ -33,8 +36,11 @@
         @endif
     </header>
     @yield('content')
-    </section>
+    @include('partials.footer')
     @yield('scripts')
+
+    <!-- JS for carousel/flickity-->
+    <script src="{{ asset('js/navbar.js') }}"></script>
 </body>
 
 </html>

@@ -15,7 +15,7 @@
             </div>
             <div class="absolute bottom-0 transform translate-y-1/2 right-5">
                 @if ($companyJob->is_open)
-                <p id="HiringBadge" class="rounded-full p-[8px_20px] bg-[#7521FF] font-bold text-white w-fit">WE’RE
+                <p id="HiringBadge" class="rounded-full p-[8px_20px] bg-primary font-bold text-white w-fit">WE’RE
                     HIRING!</p>
                 @else
                 <p id="ClosedBadge" class="rounded-full p-[8px_20px] bg-[#FF2C39] font-bold text-white w-fit">CLOSED</p>
@@ -116,11 +116,11 @@
                 class="rounded-full border border-[#0E0140] p-[14px_24px] font-semibold text-[#0E0140]">Bookmark</a>
                 @if ($companyJob->is_open)
                 <a href="{{ route('front.apply', $companyJob) }}"
-                    class="rounded-full p-[14px_24px] bg-[#FF6B2C] font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Apply
+                    class="rounded-full p-[14px_24px] bg-primary font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Apply
                     Now</a>
                     @else
                 <button
-                        class="rounded-full p-[14px_24px] bg-[#FF6B2C] opacity-55 font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Closed</button>
+                        class="rounded-full p-[14px_24px] bg-primary opacity-55 font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Closed</button>
                 @endif
             </div>
         </div>
@@ -149,13 +149,5 @@
     <!-- JavaScript -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
-    <script>
-        $('.main-carousel').flickity({
-            // options
-            cellAlign: 'left',
-            contain: true,
-            prevNextButtons: false,
-            pageDots: false
-        });
-    </script>
+    <script src="{{ asset('js/carousel.js') }}"></script>
     @endsection

@@ -14,7 +14,7 @@
         </div>
         <div id="Title" class="flex flex-col pt-[60px] gap-[10px]">
             @if ($companyJob->is_open)
-            <p id="HiringBadge" class="rounded-full p-[8px_20px] bg-[#7521FF] font-bold text-white w-fit">WE’RE
+            <p id="HiringBadge" class="rounded-full p-[8px_20px] bg-primary font-bold text-white w-fit">WE’RE
                 HIRING!</p>
             @else
             <p id="ClosedBadge" class="rounded-full p-[8px_20px] bg-[#FF2C39] font-bold text-white w-fit">CLOSED</p>
@@ -71,7 +71,7 @@
         <div id="Cover-Letter-Container" class="flex flex-col gap-4">
             <p class="font-semibold text-xl leading-[30px]">Write Best Cover Letter</p>
             <div
-                class="flex rounded-[20px] bg-white ring-1 ring-[#0E0140] p-[14px_24px] gap-[10px] focus-within:ring-2 focus-within:ring-[#FF6B2C] transition-all duration-300">
+                class="flex rounded-[20px] bg-white ring-1 ring-[#0E0140] p-[14px_24px] gap-[10px] focus-within:ring-2 focus-within:ring-primary transition-all duration-300">
                 <div class="w-6 h-5 flex shrink-0 mt-[2px]">
                     <img src={{ asset('/assets/icons/award.svg')}} alt="icon">
                 </div>
@@ -83,7 +83,7 @@
         <div id="Resume-Container" class="flex flex-col gap-4">
             <p class="font-semibold text-xl leading-[30px]">Complete Your Profile</p>
             <div
-                class="relative flex rounded-[20px] bg-white ring-1 ring-[#0E0140] p-[14px_24px] gap-[10px] focus-within:ring-2 focus-within:ring-[#FF6B2C] transition-all duration-300">
+                class="relative flex rounded-[20px] bg-white ring-1 ring-[#0E0140] p-[14px_24px] gap-[10px] focus-within:ring-2 focus-within:ring-primary transition-all duration-300">
                 <div class="w-6 h-5 flex shrink-0 mt-[2px]">
                     <img src={{ asset('/assets/icons/brifecase-tick.svg')}} alt="icon">
                 </div>
@@ -103,7 +103,7 @@
             </div>
             <div class="flex items-center gap-3">
                 <button type="submit"
-                    class="rounded-full p-[14px_24px] bg-[#FF6B2C] font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Submit
+                    class="rounded-full p-[14px_24px] bg-primary font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Submit
                     My Application</button>
             </div>
         </div>

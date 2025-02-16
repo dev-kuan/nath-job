@@ -52,7 +52,7 @@
                 <div class="flex flex-col gap-2">
                     <label for="email" class="text-base font-semibold">Email Address</label>
                     <div
-                        class="flex items-center rounded-full py-[14px] px-[24px] gap-[10px] ring-1 ring-[#0E0140] focus-within:ring-2 focus-within:ring-[#FF6B2C] transition-all duration-300">
+                        class="flex items-center rounded-full py-[14px] px-[24px] gap-[10px] ring-1 ring-[#0E0140] focus-within:ring-2 focus-within:ring-primary transition-all duration-300">
                         <div class="flex shrink-0 size-6">
                             <img src="{{ asset('assets/icons/sms.svg')}}" alt="email icon" />
                         </div>
@@ -64,7 +64,7 @@
                 <div class="flex flex-col gap-2">
                     <label for="password" class="text-base font-semibold">Password</label>
                     <div
-                        class="flex items-center rounded-full py-[14px] px-[24px] gap-[10px] ring-1 ring-[#0E0140] focus-within:ring-2 focus-within:ring-[#FF6B2C] transition-all duration-300">
+                        class="flex items-center rounded-full py-[14px] px-[24px] gap-[10px] ring-1 ring-[#0E0140] focus-within:ring-2 focus-within:ring-primary transition-all duration-300">
                         <div class="flex shrink-0 size-6">
                             <img src="{{ asset('assets/icons/lock.svg')}}" alt="password icon" />
                         </div>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="flex flex-col gap-3">
                     <button type="submit"
-                        class="flex items-center justify-center py-[14px] px-[30px] bg-[#FF6B2C] font-semibold text-white rounded-full hover:shadow-[0px_10px_20px_0px_#FF6B2C66] transition-all duration-300">
+                        class="flex items-center justify-center py-[14px] px-[30px] bg-primary font-semibold text-white rounded-full hover:shadow-[0px_10px_20px_0px_#FF6B2C66] transition-all duration-300">
                         Sign In to My Account
                     </button>
                     <a href="{{ route('register') }}"
