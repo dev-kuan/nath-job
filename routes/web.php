@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FrontJobController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CompanyJobController;
-use App\Http\Controllers\FrontController;
 use App\Http\Controllers\JobCandidateController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');

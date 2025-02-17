@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreApplyJobRequest;
+use App\Models\Company;
 
 class FrontController extends Controller
 {
@@ -23,7 +24,10 @@ class FrontController extends Controller
     }
 
     public function jobs() {
-        return view('front.jobs');
+        $jobs = CompanyJob::with(['category', 'company'])
+        ->latest()
+        ->paginate(8);
+        return view('front.jobs', compact('jobs'));
     }
 
     public function about() {
@@ -35,7 +39,13 @@ class FrontController extends Controller
     }
 
     public function companies() {
-        return view('front.companies');
+        $companies = Company::with('jobs')
+        ->paginate(10);
+        // $jobs = CompanyJob::with(['category', 'company'])
+        // ->latest()
+        // ->take(6)
+        // ->get();
+        return view('front.companies', compact('companies'));
     }
 
     // detail job
