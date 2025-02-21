@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<section class="container relative mx-auto">
+<section class="container relative max-w-full mx-auto lg:max-w-screen-xl">
     <article id="Details"
         class="container relative max-w-[900px] mx-auto flex flex-col rounded-[20px] bg-white border border-[#E8E4F8] p-[30px] gap-10 shadow-[0_8px_30px_0_#0E01400D] mt-[70px]">
         <div id="Cover" class="relative w-full">

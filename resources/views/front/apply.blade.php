@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<section class="font-poppins text-[#0E0140] pb-[100px] overflow-x-hidden">
+<section class="font-poppins text-[#0E0140] pb-[100px] overflow-x-hidden max-w-full mx-auto lg:max-w-screen-xl">
     <div id="page-background" class="absolute h-[533px] w-full top-0 -z-10 overflow-hidden">
         <img src="{{ asset('/assets/backgrounds/Group 2009.png') }}" class="object-fill w-full h-full" alt="background">
     </div>

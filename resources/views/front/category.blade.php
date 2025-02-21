@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<section>
+<section class="max-w-full mx-auto lg:max-w-screen-xl">
     <header class="container max-w-[1130px] mx-auto flex items-center justify-between gap-[50px] mt-[70px]">
         <div class="flex flex-col items-center w-full gap-4">
             <h1 class="font-black text-[36px] leading-[70px] text-white capitalize text-center">{{ $category->name }}</h1>

@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('content')
 <section class="font-poppins text-[#0E0140]">
-    <main class="bg-white flex justify-start items-start">
+    <main class="bg-white overflow-hidden flex justify-start items-start">
         <div id="Left-background"
-            class="w-1/2 hidden h-screen lg:block shrink-0 items-baseline ring-1 ring-[#E8E4F8]">
+            class="w-1/2 mx-0 justify-start hidden h-screen lg:flex shrink-0 items-baseline ring-1 ring-[#E8E4F8]">
             <img src="{{asset('assets/backgrounds/Working from Home with Pet Dog 1.png')}}"
                 class="object-cover w-full h-full bg-fixed" alt="background image">
             <div
@@ -43,7 +43,7 @@
             </div>
         </div>
         <section id="Signup-form"
-            class="flex flex-col items-center justify-start p-8 w-full lg:w-1/2 lg:ml-1/2 h-screen overflow-y-auto">
+            class="flex flex-col items-center justify-start p-8 w-full lg:w-1/2 h-screen overflow-y-auto">
             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
                 class="max-w-[500px] w-full flex flex-col gap-[30px]">
                 @csrf

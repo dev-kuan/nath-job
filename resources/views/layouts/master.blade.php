@@ -20,7 +20,7 @@
         <div id="page-background" class="absolute h-[1330px] w-full top-0 -z-10 overflow-hidden">
             <img src="{{asset('assets/backgrounds/Group 2009.png')}}" class="object-fill w-full h-full" alt="background">
         </div>
-        @elseif (in_array(Route::currentRouteName(), ['front.search', 'front.jobs']))
+        @elseif (in_array(Route::currentRouteName(), ['front.search', 'front.jobs', 'front.companies']))
         <div id="page-background" class="absolute h-[863px] w-full top-0 -z-10 overflow-hidden">
             <img src="{{asset('assets/backgrounds/Group 2009.png')}}" class="object-fill w-full h-full" alt="background">
         </div>
@@ -35,7 +35,7 @@
         @include('partials.navbar')
         @endif
     </header>
-    <main class="max-w-full mx-auto lg:max-w-screen-xl">
+    <main>
         @yield('content')
     </main>
     @if (!in_array(Route::currentRouteName(), ['login', 'register']))

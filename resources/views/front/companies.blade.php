@@ -1,19 +1,6 @@
 @extends('layouts.master')
 @section('content')
 @php
-$types = [
-['label' => 'Full time', 'value' => 'full-time'],
-['label' => 'Part time', 'value' => 'part-time'],
-['label' => 'Remote', 'value' => 'remote'],
-['label' => 'Contract', 'value' => 'contract'],
-];
-
-$skillLevel = [
-['label' => 'Entry level', 'value' => 'entry-level'],
-['label' => 'Mid level', 'value' => 'mid-level'],
-['label' => 'Senior level', 'value' => 'senior-level'],
-];
-
 $locations = [
 ['label' => 'Jakarta', 'value' => 'jakarta'],
 ['label' => 'Bandung', 'value' => 'bandung'],
@@ -21,8 +8,8 @@ $locations = [
 ['label' => 'Bali', 'value' => 'bali'],
 ['label' => 'Kupang', 'value' => 'kupang'],
 ];
-?>
 @endphp
+<section class="max-w-full mx-auto lg:max-w-screen-xl">
 <div class="max-w-xl mx-auto mb-10 text-center md:mb-6 lg:max-w-2xl">
     <div>
         <h2
@@ -88,17 +75,17 @@ $locations = [
                     <form action="{{ route('front.jobs') }}" method="GET" class="font-inter">
                         @csrf
                         <div>
-                            <div class="types">
+                            <div class="locations">
                                 <h6 class="mb-3 text-sm font-medium text-graydark dark:text-graylight">
-                                    Job Type
+                                    Company Location
                                 </h6>
-                                <select id="types-select" name="type"
+                                <select id="locations-select" name="type"
                                     class="block w-full rounded-xl border border-gray-300 bg-light p-2.5 text-sm capitalize text-graydark focus:border-primary focus:ring-primary dark:bg-graydark dark:text-graylight">
-                                    <option value="">All Type</option>
-                                    @foreach ($types as $type)
-                                    <option value="{{ $type['value'] }}" {{ request('type')==$type['value'] ? 'selected'
+                                    <option value="">All Location</option>
+                                    @foreach ($locations as $loc)
+                                    <option value="{{ $loc['value'] }}" {{ request('location')==$loc['value'] ? 'selected'
                                         : '' }}>
-                                        {{ $type['label'] }}
+                                        {{ $loc['label'] }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -122,9 +109,7 @@ $locations = [
     </div>
 </div>
 
-<section id="Companies" class="px-4 pt-16 mx-auto sm:max-w-full md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-    <h2 class="text-2xl font-bold leading-7 text-center md:text-left text-primary desktop:text-dark lg:text-white">
-        Browse by <br> Job Companies</h2>
+<section id="Companies" class="px-4 pt-10 mx-auto sm:max-w-full md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
     <div class="companies-container grid grid-cols-2 md:grid-cols-3 desktop:grid-cols-4 gap-[30px] py-4">
         @forelse ($companies as $company)
         <a href="{{ route('front.companies', $company->slug) }}" class="card">
@@ -149,7 +134,7 @@ $locations = [
         {{ $companies->appends(request()->query())->links() }}
     </div>
 </section>
-
+</section>
 @endsection
 @section('scripts')
     <script src="{{ asset('js/dropdown.js') }}"></script>

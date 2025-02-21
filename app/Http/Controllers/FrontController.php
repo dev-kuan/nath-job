@@ -23,11 +23,62 @@ class FrontController extends Controller
         return view('front.index', compact('jobs', 'categories'));
     }
 
-    public function jobs() {
-        $jobs = CompanyJob::with(['category', 'company'])
-        ->latest()
-        ->paginate(8);
-        return view('front.jobs', compact('jobs'));
+    public function jobs(Request $request) {
+
+        $query = CompanyJob::query();
+        
+        // filter by job type
+        if($request->filled('type')) {
+            $query->where('type', $request->type);
+        }
+        
+        // filter by skill level
+        if($request->filled('level')) {
+            $query->where('skill_level', $request->level);
+        }
+
+        if($request->filled('sortBy')) {
+            $query->sortBy($request->sortBy);
+        }
+
+        $jobs = $query->filter(request(['search', 'type', 'skill_level', 'category', 'company']))
+        ->with(['category', 'company'])
+        ->paginate(8)
+        ->withQueryString();
+
+        $types = [
+            ['label' => 'Full time', 'value' => 'full-time'],
+            ['label' => 'Part time', 'value' => 'part-time'],
+            ['label' => 'Remote', 'value' => 'remote'],
+            ['label' => 'Contract', 'value' => 'contract'],
+        ];
+
+        $skillLevel = [
+            ['label' => 'Entry level', 'value' => 'entry'],
+            ['label' => 'Junior', 'value' => 'junior'],
+            ['label' => 'Mid level', 'value' => 'mid'],
+            ['label' => 'Senior level', 'value' => 'senior'],
+            ['label' => 'Expert level', 'value' => 'expert'],
+        ];
+
+        $locations = [
+            ['label' => 'Jakarta', 'value' => 'jakarta'],
+            ['label' => 'Bandung', 'value' => 'bandung'],
+            ['label' => 'Surabaya', 'value' => 'surabaya'],
+            ['label' => 'Bali', 'value' => 'bali'],
+            ['label' => 'Kupang', 'value' => 'kupang'],
+        ];
+
+        $sortOptions = [
+            ['label' => 'Latest Post', 'value' => 'latest'],
+            ['label' => 'Oldest Post', 'value' => 'oldest'],
+            ['label' => 'Highest Salary', 'value' => 'highest_salary'],
+            ['label' => 'Lowest Salary', 'value' => 'salary_low'],
+            ['label' => 'Name Asc', 'value' => 'name_asc'],
+            ['label' => 'Name Desc', 'value' => 'name_desc'],
+        ];
+
+        return view('front.jobs', compact('jobs', 'types', 'sortOptions', 'skillLevel', 'locations'));
     }
 
     public function about() {
