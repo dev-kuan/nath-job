@@ -9,7 +9,7 @@ $locations = [
 ['label' => 'Kupang', 'value' => 'kupang'],
 ];
 @endphp
-<section class="max-w-full mx-auto lg:max-w-screen-xl">
+<section class="max-w-full mx-auto lg:max-w-screen-xl mb-16">
 <div class="max-w-xl mx-auto mb-10 text-center md:mb-6 lg:max-w-2xl">
     <div>
         <h2
@@ -30,7 +30,7 @@ $locations = [
     <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-x-4 md:space-y-0">
         {{-- search --}}
         <div class="w-full md:w-80">
-            <form class="flex items-center" action="{{ route('front.jobs') }}" method="GET">
+            <form class="flex items-center" action="{{ route('front.companies') }}" method="GET">
                 @csrf
                 <label for="keyword" class="sr-only">Search</label>
                 <div class="relative w-full group">
@@ -44,7 +44,7 @@ $locations = [
                     </div>
                     <input type="text" id="keyword"
                         class="block w-full px-2 py-3 pl-10 text-sm bg-white border border-gray-300 rounded-2xl text-dark focus:border-light focus:ring-primary dark:bg-graydark dark:text-light dark:placeholder-graylight"
-                        placeholder="Quick search your dream job..." name="keyword">
+                        placeholder="Quick search your dream job..." name="search">
                 </div>
             </form>
         </div>
@@ -52,6 +52,7 @@ $locations = [
         <div
             class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:items-center md:space-x-3 md:space-y-0">
             <div class="relative flex items-center max-w-lg space-x-3">
+                <x-sort-dropdown :sortOptions="$sortOptions" route="front.companies"/>
                 <button id="filter-btn" data-dropdown-target="filterDropdown"
                     class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium bg-white border border-gray-200 dropdown-btn rounded-xl text-graydark hover:bg-gray-100 hover:text-primary focus:z-10 focus:outline-none focus:ring-2 focus:ring-primaryhover dark:bg-graydark dark:text-graylight md:w-auto"
                     type="button">
@@ -72,14 +73,14 @@ $locations = [
                 <!-- Dropdown menu -->
                 <div id="filterDropdown"
                     class="absolute right-0 z-10 hidden p-4 mt-2 bg-white shadow dropdown top-full w-max rounded-2xl dark:bg-graydark">
-                    <form action="{{ route('front.jobs') }}" method="GET" class="font-inter">
+                    <form id="filter-form" action="{{ route('front.companies') }}" method="GET" class="font-inter">
                         @csrf
                         <div>
                             <div class="locations">
                                 <h6 class="mb-3 text-sm font-medium text-graydark dark:text-graylight">
                                     Company Location
                                 </h6>
-                                <select id="locations-select" name="type"
+                                <select id="location" name="location"
                                     class="block w-full rounded-xl border border-gray-300 bg-light p-2.5 text-sm capitalize text-graydark focus:border-primary focus:ring-primary dark:bg-graydark dark:text-graylight">
                                     <option value="">All Location</option>
                                     @foreach ($locations as $loc)
@@ -93,7 +94,7 @@ $locations = [
                         </div>
 
                         <div class="flex justify-center w-full pb-4 mt-6 space-x-4 md:px-4">
-                            <button aria-label="reset" type="reset"
+                            <button onclick="resetFilters()" aria-label="reset" type="reset"
                                 class="w-full px-5 py-2 text-sm font-medium bg-white border border-gray-200 rounded-lg text-graydark hover:bg-gray-100 hover:text-primary focus:z-10 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:bg-graydark dark:text-graylight dark:hover:bg-grayhover">
                                 Reset
                             </button>
@@ -109,33 +110,68 @@ $locations = [
     </div>
 </div>
 
-<section id="Companies" class="px-4 pt-10 mx-auto sm:max-w-full md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-    <div class="companies-container grid grid-cols-2 md:grid-cols-3 desktop:grid-cols-4 gap-[30px] py-4">
-        @forelse ($companies as $company)
-        <a href="{{ route('front.companies', $company->slug) }}" class="card">
-            <div
-                class="flex flex-col rounded-[20px] border border-[#E8E4F8] p-5 gap-[30px] bg-white shadow-[0_8px_30px_0_#0E01400D] hover:ring-2 hover:ring-primary transition-all duration-300">
-                <div class="flex w-16 h-16 shrink-0">
-                    <img src="{{Storage::url($company->logo)}}" class="object-contain" alt="logo">
-                </div>
-                <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="flex flex-col">
-                        <p class="font-semibold capitalize text-base leading-[27px]">{{ $company->name }}</p>
-                        <p class="font-medium">{{ $company->jobs->count() }} Jobs</p>
+    <section id="Companies" class="px-4 mb-16 pt-10 mx-auto sm:max-w-full md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+        <div class="companies-container grid grid-cols-2 md:grid-cols-3 desktop:grid-cols-4 gap-[30px] py-4">
+            @forelse ($companies as $company)
+            <a href="{{ route('front.company_jobs', $company->slug) }}" class="card">
+                <div
+                    class="flex flex-col rounded-[20px] border border-[#E8E4F8] p-5 gap-[30px] bg-white shadow-[0_8px_30px_0_#0E01400D] hover:ring-2 hover:ring-primary transition-all duration-300">
+                    <div class="flex w-16 h-16 shrink-0">
+                        <img src="{{Storage::url($company->logo)}}" class="object-contain" alt="logo">
                     </div>
-                    <img src="{{asset('assets/icons/arrow-circle-right.svg')}}" alt="icon">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex flex-col">
+                            <p class="font-semibold capitalize text-base leading-[27px]">{{ $company->name }}</p>
+                            <p class="font-medium">{{ $company->jobs->count() }} Jobs</p>
+                        </div>
+                        <img src="{{asset('assets/icons/arrow-circle-right.svg')}}" alt="icon">
+                    </div>
                 </div>
-            </div>
-        </a>
-        @empty
-        @endforelse
-    </div>
-    <div id="pagination" class="px-4 my-10">
-        {{ $companies->appends(request()->query())->links() }}
-    </div>
-</section>
+            </a>
+            @empty
+            @endforelse
+        </div>
+        <div id="pagination" class="px-4 my-10">
+            {{ $companies->appends(request()->query())->links() }}
+        </div>
+    </section>
 </section>
 @endsection
 @section('scripts')
     <script src="{{ asset('js/dropdown.js') }}"></script>
+    <script>
+        function resetFilters() {
+            document.getElementById('location').value = "";
+    
+            const selects = document.querySelectorAll('select');
+            selects.forEach(select => {
+                select.classList.add('animate-pulse');
+                setTimeout(() => {
+                    select.classList.remove('animate-pulse');
+                }, 500);
+            });
+    
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+    
+            document.getElementById('filter-form').submit();
+        }
+        function resetSort() {
+            document.getElementById('type').value = "";
+    
+            const selects = document.querySelectorAll('input');
+            selects.forEach(select => {
+                select.classList.add('animate-pulse');
+                setTimeout(() => {
+                    select.classList.remove('animate-pulse');
+                }, 500);
+            });
+    
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+    
+            document.getElementById('sort-form').submit();
+        }
+    
+    </script>
 @endsection

@@ -81,6 +81,20 @@ class FrontController extends Controller
         return view('front.jobs', compact('jobs', 'types', 'sortOptions', 'skillLevel', 'locations'));
     }
 
+    public function company_jobs(Company $company)
+    {
+        $jobs = CompanyJob::with(['category', 'company'])
+        ->where('company_id', $company->id)
+        ->latest()
+        ->paginate(8);
+
+        $isOpen = CompanyJob::where('company_id', $company->id)
+        ->where('is_open', true)
+        ->count();
+
+        return view('front.company_jobs', compact('jobs', 'company', 'isOpen'));
+    }
+
     public function about() {
         return view('front.about');
     }
@@ -89,14 +103,36 @@ class FrontController extends Controller
         return view('front.contact');
     }
 
-    public function companies() {
-        $companies = Company::with('jobs')
-        ->paginate(10);
-        // $jobs = CompanyJob::with(['category', 'company'])
-        // ->latest()
-        // ->take(6)
-        // ->get();
-        return view('front.companies', compact('companies'));
+    public function companies(Request $request) {
+        $query = Company::query();
+
+        if($request->filled('sortBy')) {
+            $query->sortBy($request->sortBy);
+        };
+
+        if($request->filled('location')) {
+            $query->where('location', $request->location);
+        };
+
+        $companies = $query->filter(request(['search', 'location']))
+        ->with(['jobs'])
+        ->paginate(10)
+        ->withQueryString();
+
+        $locations = [
+            ['label' => 'Jakarta', 'value' => 'jakarta'],
+            ['label' => 'Bandung', 'value' => 'bandung'],
+            ['label' => 'Surabaya', 'value' => 'surabaya'],
+            ['label' => 'Bali', 'value' => 'bali'],
+            ['label' => 'Kupang', 'value' => 'kupang'],
+        ];
+
+        $sortOptions = [
+            ['label' => 'Name Asc', 'value' => 'name_asc'],
+            ['label' => 'Name Desc', 'value' => 'name_desc'],
+        ];
+
+        return view('front.companies', compact('companies','locations', 'sortOptions' ));
     }
 
     // detail job
@@ -106,6 +142,7 @@ class FrontController extends Controller
         ->InRandomOrder()
         ->take(4)
         ->get();
+        
 
         return view('front.detail', compact('companyJob', 'jobs'));
     }

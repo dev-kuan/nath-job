@@ -46,7 +46,8 @@
         <div
             class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:items-center md:space-x-3 md:space-y-0">
             <div class="relative flex items-center max-w-lg space-x-3">
-                <button id="sort-btn" data-dropdown-target="sortDropdown" type="button"
+                <x-sort-dropdown :sortOptions="$sortOptions" route="front.jobs" />
+                {{-- <button id="sort-btn" data-dropdown-target="sortDropdown" type="button"
                     class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium bg-white border border-gray-200 dropdown-btn rounded-xl text-dark hover:bg-gray-100 hover:text-primary focus:z-10 focus:outline-none focus:ring-2 focus:ring-primary md:w-auto">
                     <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         fill="none" viewBox="0 0 24 24">
@@ -89,7 +90,7 @@
                         </div>
                         </ul>
                     </form>
-                </div>
+                </div> --}}
                 <button id="filter-btn" data-dropdown-target="filterDropdown"
                     class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium bg-white border border-gray-200 dropdown-btn rounded-xl text-dark hover:bg-gray-100 hover:text-primary focus:z-10 focus:outline-none focus:ring-2 focus:ring-primary md:w-auto"
                     type="button">

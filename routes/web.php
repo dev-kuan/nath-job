@@ -13,6 +13,7 @@ use App\Http\Controllers\JobCandidateController;
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/jobs', [FrontController::class, 'jobs'])->name('front.jobs');
 Route::get('/companies', [FrontController::class, 'companies'])->name('front.companies');
+Route::get('company_jobs/{company:slug}', [FrontController::class, 'company_jobs'])->name('front.company_jobs');
 Route::get('/about', [FrontController::class, 'about'])->name('front.about');
 Route::get('/contact', [FrontController::class, 'contact'])->name('front.contact');
 Route::get('/detail/{company_job:slug}', [FrontController::class, 'detail'])->name('front.detail');

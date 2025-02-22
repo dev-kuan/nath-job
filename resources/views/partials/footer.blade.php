@@ -31,7 +31,7 @@ $socials = [
 $currentYear = date('Y');
 
 @endphp
-<footer class="relative mt-16 bg-dark">
+<footer class="relative mt-24 bg-dark">
     <svg class="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-dark"
         preserveAspectRatio="none" viewBox="0 0 1440 54">
         <path fill="currentColor"
