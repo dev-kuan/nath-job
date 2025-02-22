@@ -26,39 +26,39 @@
             <h1 class="font-bold text-[32px] leading-[48px]">{{ $companyJob->name }}</h1>
             <p>{{ $companyJob->category->name }} • Posted at {{ $companyJob->created_at->format('d M, Y') }}</p>
         </div>
-        <div id="Feature" class="flex items-center gap-6">
+        <div id="Feature" class="flex flex-wrap items-center gap-6">
             <div class="flex items-center gap-[6px]">
-                <div class="flex shrink-0 w-[38px] h-[38px]">
+                <div class="flex shrink-0 w-6 h-6 desktop:w-8 desktop:desktop:h-8">
                     <img src="{{ asset('assets/icons/note-favorite-orange.svg')}}" alt="icon">
                 </div>
-                <p class="font-semibold text-lg capitalize leading-[27px]">{{ $companyJob->type }}</p>
+                <p class="font-semibold desktop:text-lg text-base capitalize leading-[27px]">{{ $companyJob->type }}</p>
             </div>
             <div class="flex items-center gap-[6px]">
-                <div class="flex shrink-0 w-[38px] h-[38px]">
+                <div class="flex shrink-0 w-6 h-6 desktop:w-8 desktop:h-8">
                     <img src="{{ asset('assets/icons/personalcard-yellow.svg')}}" alt="icon">
                 </div>
-                <p class="font-semibold text-lg capitalize leading-[27px]">{{ $companyJob->skill_level }}</p>
+                <p class="font-semibold desktop:text-lg text-base capitalize leading-[27px]">{{ $companyJob->skill_level }}</p>
             </div>
             <div class="flex items-center gap-[6px]">
-                <div class="flex shrink-0 w-[38px] h-[38px]">
+                <div class="flex shrink-0 w-6 h-6 desktop:w-8 desktop:h-8">
                     <img src="{{ asset('assets/icons/moneys-cyan.svg')}}" alt="icon">
                 </div>
-                <p class="font-semibold text-lg leading-[27px]">Rp {{ number_format($companyJob->salary, '0', ',', '.')
+                <p class="font-semibold desktop:text-lg text-base leading-[27px]">Rp {{ number_format($companyJob->salary, '0', ',', '.')
                     }}/mo</p>
             </div>
             <div class="flex items-center gap-[6px]">
-                <div class="flex shrink-0 w-[38px] h-[38px]">
+                <div class="flex shrink-0 w-6 h-6 desktop:w-8 desktop:h-8">
                     <img src="{{ asset('assets/icons/location-purple.svg')}}" alt="icon">
                 </div>
-                <p class="font-semibold text-lg leading-[27px]">{{ $companyJob->location }}</p>
+                <p class="font-semibold desktop:text-lg text-base leading-[27px]">{{ $companyJob->location }}</p>
             </div>
         </div>
         <div id="Overview" class="flex flex-col gap-[10px]">
-            <h2 class="font-semibold text-xl leading-[30px]">Overview</h2>
-            <p class="text-lg leading-[34px]">{{ $companyJob->about }}</p>
+            <h2 class="font-semibold text-lg desktop:text-xl leading-[30px]">Overview</h2>
+            <p class="text-base desktop:text-lg leading-[34px]">{{ $companyJob->about }}</p>
         </div>
         <div id="Responsibilities" class="flex flex-col gap-[10px]">
-            <h2 class="font-semibold text-xl leading-[30px]">Responsibilities</h2>
+            <h2 class="font-semibold text-lg desktop:text-xl leading-[30px]">Responsibilities</h2>
             <div class="flex flex-col gap-5">
                 @foreach ($companyJob->responsibilities as $responsibility)
                 <div class="flex items-center gap-2">
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div id="Qualifications" class="flex flex-col gap-[10px]">
-            <h2 class="font-semibold text-xl leading-[30px]">Qualifications</h2>
+            <h2 class="font-semibold text-lg desktop:text-xl leading-[30px]">Qualifications</h2>
             <div class="flex flex-col gap-5">
                 @foreach ($companyJob->qualifications as $qualification)
                 <div class="flex items-center gap-2">
@@ -84,7 +84,7 @@
             </div>
         </div>
         <div id="Company" class="flex flex-col gap-[10px]">
-            <h2 class="font-semibold text-xl leading-[30px]">Company</h2>
+            <h2 class="font-semibold text-lg desktop:text-xl leading-[30px]">Company</h2>
             <div class="flex flex-col gap-5">
                 <div class="flex items-center gap-5">
                     <div class="company-logo w-[70px] flex shrink-0">
@@ -104,7 +104,7 @@
             </div>
         </div>
         <hr class="border-[#E8E4F8]">
-        <div id="CTA" class="flex items-center justify-between">
+        <div id="CTA" class="flex desktop:flex-nowrap flex-wrap gap-y-4 items-center justify-between">
             <div class="flex items-center gap-2">
                 <div class="flex w-6 h-6 shrink-0">
                     <img src="{{ asset('assets/icons/security-user.svg')}}" alt="icon">
@@ -126,7 +126,7 @@
         </div>
     </article>
     <section id="Latest" class="relative overflow-hidden flex flex-col gap-[30px] mt-24">
-        <h2 class="container max-w-4xl text-left mx-auto font-bold text-2xl leading-[36px]">Other Jobs You <br> Might
+        <h2 class="container max-w-4xl desktop:px-0 px-3 text-left mx-auto font-bold text-2xl leading-[36px]">Other Jobs You <br> Might
             Interested</h2>
         <div class="main-carousel *:!overflow-visible">
             @forelse ($jobs as $job )
